@@ -8,59 +8,74 @@ from scrapy.selector import Selector
 from scrapy.loader import ItemLoader
 from urllib.parse import urlparse,urlsplit,urljoin
 from GovernWebCrawler.items import GovernwebcrawlerItem
+from GovernWebCrawler.utils import load_domains,load_tags,load_websites,get_schemenetloc
 import urllib.request
 import json
 import re
 import io
 import os
+
 class GovernCrawler(CrawlSpider):
     name='govern_crawler'
-    allowed_domains = ["jiangsu.gov.cn"]
-    def gen_allowed_domains(self,urls):
-        domains=[
-            'jiangsu.gov.cn'
-        ]
-        for url in urls:
-            res=urlparse(url)
-            #print(res)
-            #print(res.netloc)
-            domains.append(res.netloc)
-        return domains
+    allowed_domains = []
+    tags=[]
+    websites={}
+    def __init__(self):
+        domains=load_domains()
+        self.allowed_domains.extend(domains)
+        tags=load_tags()
+        self.tags.extend(tags)
+        self.websites=load_websites()
+        #print(self.websites)
     def start_requests(self):
-        self.urls = [
-            'http://www.jiangsu.gov.cn/',
-            #'http://www.jiangsu.gov.cn/rdgz/201706/t20170617_482013.html',
-            #'http://www.jiangsu.gov.cn/ttxw/201706/t20170617_482014.html',
-            #'http://www.jiangsu.gov.cn/rdgz/201705/t20170518_478516.html'
-        ]
-        #self.allowed_domains = self.gen_allowed_domains(self.urls)
-        for url in self.urls:
+        urls=[
+            #'http://www.jsfao.gov.cn/wsfw/004009/004009005/20140916/263bf4ee-b20b-4e6a-b193-7fb7a132c78a.html',
+            #'http://www.jiangsu.gov.cn/ttxw/201706/t20170620_482193.html'
+            #'http://www.jsfao.gov.cn/dwjl/moreinfo.html'            
+            ]
+        for key,value in self.websites.items():
             #pass
-            yield Request(url=url,callback=self.parse)
+            urls.append(key)
+            #print(value)
+            urls.extend(value['complements'])
+
+        for url in urls:
+            req=Request(url=url,callback=self.parse)
+            if not url.endswith('.html'):
+                req.meta['PhantomJS'] = True
+            yield req
 
     def parse(self,response):
         curr_url=response.url
-        #print(curr_url)
-        #print(get_base_url(response))
-        
-        item=ItemLoader(item=GovernwebcrawlerItem(),response=response)
-        root_path='//div[@class="detail"]/div[@class="L"]'
-        item.add_xpath('title',root_path+'/div[@class="ttL"]/h2')
-        item.add_xpath('time',root_path+'/div[@class="ttL"]/p/span[1]')
-        item.add_xpath('content',root_path+'/div[@id="con"]/div[@class="TRS_Editor"]')
-        item.add_value('url',curr_url)
-        yield item.load_item()
-
+        key=get_schemenetloc(curr_url)
+        if key in self.websites:
+            rule=self.websites[key]
+            #print(rule)
+            item=ItemLoader(item=GovernwebcrawlerItem(),response=response)
+            root=rule['root_div']
+            title=rule['title']
+            content=rule['content']
+            time=rule['time']
+            desc=rule['desc']
+            item.add_xpath('title',root+title)
+            item.add_xpath('time',root+time)
+            item.add_xpath('content',root+content)
+            item.add_value('url',curr_url)
+            item.add_value('desc',desc)
+            yield item.load_item()
+         
         body=response.body
         content=body.decode('utf8',errors='ignore')
+        #print(content)
         results=Selector(text=content).xpath('//a').extract()
         for res in results:
-            #print(res)
             sel=Selector(text=res)
             url=sel.xpath('//a/@href').extract()
             name=sel.xpath('//a/text()').extract()
             if len(url)!=0:
                 url=urljoin(curr_url, url[0])
-                yield Request(url, callback=self.parse)
-
+                req=Request(url=url,callback=self.parse)
+                if not url.endswith('.html'):
+                    req.meta['PhantomJS'] = True
+                yield req
         
