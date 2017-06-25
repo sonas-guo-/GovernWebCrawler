@@ -8,6 +8,8 @@ class PhantomJSMiddleware(object):
         ptjs=spider.settings.get('PHANTOMJS_PATH')
         if 'PhantomJS' in request.meta:
             driver = webdriver.PhantomJS(executable_path=ptjs)
+            driver.set_page_load_timeout(3)
+            driver.set_script_timeout(3)
             driver.get(request.url)
             content = driver.page_source.encode('utf-8')
             driver.quit()  

@@ -29,14 +29,11 @@ class GovernCrawler(CrawlSpider):
         #print(self.websites)
     def start_requests(self):
         urls=[
-            #'http://www.jsfao.gov.cn/wsfw/004009/004009005/20140916/263bf4ee-b20b-4e6a-b193-7fb7a132c78a.html',
-            #'http://www.jiangsu.gov.cn/ttxw/201706/t20170620_482193.html'
-            #'http://www.jsfao.gov.cn/dwjl/moreinfo.html'            
+            #'http://www.jiangsudoc.gov.cn/NewsDetail.asp?NewsID=79704'
             ]
         for key,value in self.websites.items():
             #pass
             urls.append(key)
-            #print(value)
             urls.extend(value['complements'])
 
         for url in urls:

@@ -2,14 +2,15 @@
     "allowed_domains":[
         "jiangsu.gov.cn",
         "218.94.123.16",
-        "jsfao.gov.cn"
+        "jsfao.gov.cn",
+        "jiangsudoc.gov.cn"
     ],
     "tags":[
         "一带一路"
     ],
     "websites":[
         {
-        "active":true,
+        "active":false,
         "website":"http://www.jiangsu.gov.cn",
         "desc":"江苏省人民政府",
         "time_format":"发布时间:(\\d{4}-\\d{2}-\\d{2})",
@@ -22,7 +23,7 @@
             ]
         },
         {
-        "active":true,
+        "active":false,
         "website":"http://www.jsfao.gov.cn",
         "desc":"江苏省人民政府外事办公室",
         "time_format":"信息时间：(\\d{4}-\\d{2}-\\d{2})",
@@ -32,7 +33,21 @@
         "content":"/div[@class='con']",
         "complements":[
            "http://www.jsfao.gov.cn/search.html?title=一带一路" 
-        ]
+            ]
+        },
+        {
+        "active":true,
+        "website":"http://www.jiangsudoc.gov.cn",
+        "desc":"江苏省商务厅",
+        "time_format":"【发布日期】：(\\d{4}年\\d{1,2}月\\d{1,2}日)",
+        "root_div":"//table[@align='center']/tbody",
+        "time":"/tr[3]/td",
+        "title":"/tr[1]/td[@class='NewsTitle']",
+        "content":"/tr[2]/td[@id='zoom']",
+        "complements":[
+           "http://www.jiangsudoc.gov.cn/Search.asp?sqlKey=%D2%BB%B4%F8%D2%BB%C2%B7&xselect=Title&selClass=0",
+           "http://www.jiangsudoc.gov.cn/Search.asp?sqlKey=%D2%BB%B4%F8%D2%BB%C2%B7&xselect=Content&selClass=0"
+            ]
         }
     ]
 }
