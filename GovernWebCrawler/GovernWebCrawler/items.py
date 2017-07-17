@@ -8,8 +8,7 @@ from GovernWebCrawler.utils import load_timefmts
 import re
 def keep_time(element):
     timefmts=load_timefmts()
-    #print(timefmts)
-    pattern=re.compile('|'.join(timefmts))
+    pattern=re.compile(timefmts)
     matches=pattern.search(element)
     if matches:
         return matches.group(1)
@@ -17,11 +16,14 @@ def remove_symbols(element):
     lst=element.split()
     res=''.join(lst)
     return res
+
+def replace_SBCspace(element):
+    return element.replace('\u3000',' ')
 class GovernwebcrawlerItem(scrapy.Item):
     url=scrapy.Field()
     desc=scrapy.Field()
     time=scrapy.Field(
-        input_processor=MapCompose(remove_tags,keep_time)
+        input_processor=MapCompose(remove_tags,replace_SBCspace,keep_time)
     )
     title=scrapy.Field(
         input_processor=MapCompose(remove_tags)
@@ -29,5 +31,4 @@ class GovernwebcrawlerItem(scrapy.Item):
     content=scrapy.Field(
         input_processor=MapCompose(remove_tags,remove_symbols)
     )
-    #print(url,time,title,content)
     #input()

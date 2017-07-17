@@ -3,17 +3,32 @@
         "jiangsu.gov.cn",
         "218.94.123.16",
         "jsfao.gov.cn",
-        "jiangsudoc.gov.cn"
+        "jiangsudoc.gov.cn",
+        "shaanxi.gov.cn",
+        "sxfao.gov.cn",
+        "sxdofcom.gov.cn",
+        "yn.gov.cn",
+        "yfao.gov.cn",
+        "bofcom.gov.cn",
+        "hlj.gov.cn",
+        "hljswb.gov.cn",
+        "hljswt.gov.cn",
+        "shanxigov.cn",
+        "sxfoa.gov.cn",
+        "docsx.gov.cn",
+        "hubei.gov.cn",
+        "fohb.gov.cn",
+        "hbdofcom.gov.cn"
     ],
     "tags":[
         "一带一路"
     ],
+    "time_format":"(\\d{4}[年-]\\d{1,2}[月-]\\d{1,2}日*)",
     "websites":[
         {
         "active":false,
         "website":"http://www.jiangsu.gov.cn",
         "desc":"江苏省人民政府",
-        "time_format":"发布时间:(\\d{4}-\\d{2}-\\d{2})",
         "root_div":"//div[@class='detail']/div[@class='L']",
         "time":"/div[@class='ttL']/p/span[1]",
         "title":"/div[@class='ttL']/h2",
@@ -26,7 +41,6 @@
         "active":false,
         "website":"http://www.jsfao.gov.cn",
         "desc":"江苏省人民政府外事办公室",
-        "time_format":"信息时间：(\\d{4}-\\d{2}-\\d{2})",
         "root_div":"//div[@class='article-info']",
         "time":"/p[@class='info-sources']",
         "title":"/h1",
@@ -36,10 +50,9 @@
             ]
         },
         {
-        "active":true,
+        "active":false,
         "website":"http://www.jiangsudoc.gov.cn",
         "desc":"江苏省商务厅",
-        "time_format":"【发布日期】：(\\d{4}年\\d{1,2}月\\d{1,2}日)",
         "root_div":"//table[@align='center']/tbody",
         "time":"/tr[3]/td",
         "title":"/tr[1]/td[@class='NewsTitle']",
@@ -47,6 +60,179 @@
         "complements":[
            "http://www.jiangsudoc.gov.cn/Search.asp?sqlKey=%D2%BB%B4%F8%D2%BB%C2%B7&xselect=Title&selClass=0",
            "http://www.jiangsudoc.gov.cn/Search.asp?sqlKey=%D2%BB%B4%F8%D2%BB%C2%B7&xselect=Content&selClass=0"
+            ]
+        },
+        {
+        "active":true,
+        "website":"http://www.shaanxi.gov.cn",
+        "desc":"陕西省人民政府",
+        "root_div":"//div[@class='news_left left']",
+        "time":"/div[@class='info-attr']/div[@class='info-attr-left left']",
+        "title":"/h1",
+        "content":"/div[@class='info-cont']/div[@id='info-cont']",
+        "complements":[
+           "http://www.shaanxi.gov.cn/search/searchResultNew.jsp?q=%E4%B8%80%E5%B8%A6%E4%B8%80%E8%B7%AF&btn=&t_id=266&pageSize=15&class=0"
+            ]
+        },
+        {
+        "active":true,
+        "website":"http://www.sxfao.gov.cn",
+        "desc":"陕西省人民政府外事办公室",
+        "root_div":"//form[@name='_newscontent_fromname']",
+        "time":"/div[@class='time']",
+        "title":"/h1",
+        "content":"/div[@class='content']",
+        "complements":[
+            ]
+        },
+        {
+        "active":true,
+        "website":"http://www.sxdofcom.gov.cn",
+        "desc":"陕西省商务厅",
+        "root_div":"//div[@class='xwzw']",
+        "time":"/div[@class='wh']",
+        "title":"/div[@class='zbt']",
+        "content":"/div[@class='zw']",
+        "complements":[
+            "http://www.sxdofcom.gov.cn/newstyle/pub_newschannel.asp?chid=100234&searchword=%D2%BB%B4%F8%D2%BB%C2%B7&select=%C8%AB%B2%BF&select2=%CA%B1%BC%E4&imageField.x=33&imageField.y=18"
+            ]
+        },
+        {
+        "active":true,
+        "website":"http://www.yn.gov.cn",
+        "desc":"云南省人民政府",
+        "root_div":"//div[@class='Right_1']",
+        "time":"/div[@class='time']",
+        "title":"/h3",
+        "content":"/div[@class='zoom']",
+        "complements":[
+            "http://search.yn.gov.cn:8081/search/search?func=basicSearch&keyword=%E4%B8%80%E5%B8%A6%E4%B8%80%E8%B7%AF&currentPage=1&orderby=date&range=all&type=null&pageNum=15"
+            ]
+        },
+        {
+        "active":true,
+        "website":"http://www.yfao.gov.cn",
+        "desc":"云南省人民政府外事办公室",
+        "root_div":"//div[@class='box-body']",
+        "time":"/div[@class='row']/div/div/p",
+        "title":"/div[@class='row']/div/h2",
+        "content":"/div[@class='row invoice-info']/div/div",
+        "complements":[
+            ]
+        },
+        {
+        "active":true,
+        "website":"http://www.bofcom.gov.cn",
+        "desc":"云南省商务厅",
+        "root_div":"/html/body/table/tr/td[3]/table/tr/td/table[5]/tr[1]/td/div",
+        "time":"/table[1]/tr/td",
+        "title":"/table[1]/tr/td/font/b",
+        "content":"/table[2]",
+        "complements":[
+            ]
+        },
+        {
+        "active":false,
+        "website":"http://www.hlj.gov.cn",
+        "desc":"黑龙江省人民政府",
+        "root_div":"/html/body/div[4]/div[3]",
+        "time":"/div[1]/div[2]/span[1]",
+        "title":"/div[1]/div[1]",
+        "content":"/div[2]",
+        "complements":[
+            ]
+        },
+        {
+        "active":false,
+        "website":"http://www.hljswb.gov.cn",
+        "desc":"黑龙江省人民政府外事办公室",
+        "root_div":"/html/body/div[2]/div[3]/div[2]",
+        "time":"/div[1]/span[2]",
+        "title":"/div[1]/span[1]",
+        "content":"/div[2]",
+        "complements":[
+            ]
+        },
+        {
+        "active":false,
+        "website":"http://www.hljswt.gov.cn",
+        "desc":"黑龙江省商务厅",
+        "root_div":".//*[@id='right']/div[3]",
+        "time":"/p",
+        "title":"/h4",
+        "content":"/div",
+        "complements":[
+            ]
+        },
+        {
+        "active":false,
+        "website":"http://www.shanxigov.cn",
+        "desc":"山西省人民政府",
+        "root_div":"/html/body/div[4]/div/div[2]/div/div[1]/div",
+        "time":"/div[1]",
+        "title":"/h1",
+        "content":"/div[3]/div",
+        "complements":[
+            "http://www.shanxi.gov.cn/search/search.jsp?sword=%E4%B8%80%E5%B8%A6%E4%B8%80%E8%B7%AF"
+            ]
+        },
+        {
+        "active":false,
+        "website":"http://www.sxfoa.gov.cn",
+        "desc":"山西省人民政府外事办公室",
+        "root_div":"",
+        "time":"/html/body/table[7]/tbody/tr/td[1]/table/tbody/tr/td[2]/table[2]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[3]/td",
+        "title":"/html/body/table[7]/tbody/tr/td[1]/table/tbody/tr/td[2]/table[2]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td/font[1]/span",
+        "content":".//*[@id='Zoom']",
+        "complements":[
+            ]
+        },
+        {
+        "active":false,
+        "website":"http://www.docsx.gov.cn",
+        "desc":"山西省商务厅",
+        "root_div":"/html/body/div[1]/center/div[4]/div[2]/div",
+        "time":"/div[2]",
+        "title":"/div[1]",
+        "content":"/div[3]",
+        "complements":[
+            "http://www.docsx.gov.cn/swt_search/list.action"
+            ]
+        },
+        {
+        "active":false,
+        "website":"http://www.hubei.gov.cn",
+        "desc":"湖北省人民政府",
+        "root_div":"",
+        "time":"/html/body/div[6]/cite[1]/span[3]",
+        "title":".//*[@id='tts-title']",
+        "content":".//*[@id='tts-text']/div[1]",
+        "complements":[
+            "http://so.hbrbmedia.com/sought/search/result.htm?wd=%E4%B8%80%E5%B8%A6%E4%B8%80%E8%B7%AF&channelid=5&orderColumn=RELEVANCE&bt_search="
+            ]
+        },
+        {
+        "active":false,
+        "website":"http://www.fohb.gov.cn",
+        "desc":"湖北省人民政府外事办公室",
+        "root_div":"",
+        "time":"/html/body/div[3]/div[2]/div/div/span[1]",
+        "title":"/html/body/div[3]/div[2]/div/h3",
+        "content":"/html/body/div[3]/div[2]",
+        "complements":[
+            "http://www.fohb.gov.cn/search.aspx?keyword=%E4%B8%80%E5%B8%A6%E4%B8%80%E8%B7%AF"
+            ]
+        },
+        {
+        "active":false,
+        "website":"http://www.hbdofcom.gov.cn",
+        "desc":"湖北省商务厅",
+        "root_div":"",
+        "time":"/html/body/div[1]/div[3]/div/p/span[1]",
+        "title":"/html/body/div[1]/div[3]/div/h2",
+        "content":"/html/body/div[1]/div[3]/div/div[2]",
+        "complements":[
+            "http://www.hbdofcom.gov.cn/search/searchResultGJ.jsp?t_id=530&length=130&q=%E4%B8%80%E5%B8%A6%E4%B8%80%E8%B7%AF"
             ]
         }
     ]

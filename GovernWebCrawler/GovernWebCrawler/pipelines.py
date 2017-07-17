@@ -49,6 +49,7 @@ class Sqlite3Pipeline(object):
             print(e)
     
     def process_item(self, item, spider):
+        #print('-'*100)
         #print(item)
         if 'url' in item and len(item['url'])>0:
             url=item['url'][0]
@@ -72,7 +73,7 @@ class Sqlite3Pipeline(object):
             content=item['content'][0]
         else:
             raise DropItem('item缺少内容')
-        
+
         insert_cmd='''
         insert into %s values(
         '%s','%s','%s','%s','%s'

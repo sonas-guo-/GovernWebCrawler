@@ -29,7 +29,6 @@ class GovernCrawler(CrawlSpider):
         #print(self.websites)
     def start_requests(self):
         urls=[
-            #'http://www.jiangsudoc.gov.cn/NewsDetail.asp?NewsID=79704'
             ]
         for key,value in self.websites.items():
             #pass
@@ -47,7 +46,6 @@ class GovernCrawler(CrawlSpider):
         key=get_schemenetloc(curr_url)
         if key in self.websites:
             rule=self.websites[key]
-            #print(rule)
             item=ItemLoader(item=GovernwebcrawlerItem(),response=response)
             root=rule['root_div']
             title=rule['title']
@@ -59,11 +57,12 @@ class GovernCrawler(CrawlSpider):
             item.add_xpath('content',root+content)
             item.add_value('url',curr_url)
             item.add_value('desc',desc)
+            
             yield item.load_item()
          
         body=response.body
         content=body.decode('utf8',errors='ignore')
-        #print(content)
+
         results=Selector(text=content).xpath('//a').extract()
         for res in results:
             sel=Selector(text=res)

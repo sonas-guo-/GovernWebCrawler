@@ -35,8 +35,6 @@ def get_schemenetloc(url):
     return nurl
 
 def load_timefmts():
-    fmts=[]
-    websites=load_websites()
-    for key,value in websites.items():
-        fmts.append(value['time_format'])
+    rules=load_rules()
+    fmts=rules['time_format']
     return fmts
